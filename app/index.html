@@ -1,29 +1,68 @@
 <!doctype html>
 <html lang="en" ng-app="myApp">
 <head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-  <link rel="stylesheet" href="css/app.css"/>
+<meta charset="utf-8">
+<title>My AngularJS App</title>
+<link rel="stylesheet" href="css/app.css"/>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap-theme.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Latest compiled and minified JavaScript -->
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
-
-  <div ng-view></div>
-
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  -->
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+<div id='wrap'>
+  <div class='container' ng-controller='ChatCtrl'>
+    <div class="page-header"><h1>Angularissimo Chat</h1>
+    </div>
+      <p class='lead'>
+      This is a very simple rough chat application implemented with <a
+        href='http://angularjs.org/'>Angularjs</a> and <a
+        href='http://faye.jcoglan.com/'>Faye - Simple pub/sub messaging for
+        the web</a>.
+      </p>
+      <p>
+      Enter your name and start chatting with every other visitor of this page.
+      </p>
+      <form role='form'><input type="text" class='form-control' ng-model="nameInput"
+        ng-minlength="3" placeholder="Enter your name"></form>
+      <hr/>
+      <ul class="list-unstyled">
+        <li ng-show='nameInput'>
+        <form role='form' class='form-horizontal' ng-submit="sendMessage()">
+         <div class="form-group">
+          <label for="messageInput" class="col-sm-2
+            control-label">{{nameInput}} :</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" ng-model="messageInput" id='messageInput' placeholder="Message">
+        </div>
+        </form>
+        </li>
+        <li ng-repeat="message in messages">
+        {{message.name}} : {{message.text}} ( {{message.date | date: 'shortTime'}})
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit">
+    This application was build in the context of a friday project at <a
+      href='http://jimdo.com'>Jimdo</a> by Bastian Kriesten
+    </p>
+  </div>
+</div>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<script src="lib/faye-browser.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
 </body>
 </html>

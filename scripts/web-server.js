@@ -8,6 +8,14 @@ var util = require('util'),
 
 var DEFAULT_PORT = 8000;
 
+var faye = require('faye');
+
+var server = http.createServer(),
+    bayeux = new faye.NodeAdapter({mount: '/'});
+
+bayeux.attach(server);
+server.listen(8001);
+
 function main(argv) {
   new HttpServer({
     'GET': createServlet(StaticServlet),
