@@ -8,7 +8,6 @@ angular.module('myApp.controllers', []).
     initServerConnection();
 
     function initServerConnection(){
-        $scope.client = new Faye.Client('http://localhost:8001/');
         faye.subscribe('/messages', function(message) {
           $scope.$apply(function(){ 
             $scope.messages.unshift(message)

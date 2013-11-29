@@ -10,6 +10,7 @@
     "karma-ng-scenario": "~0.1"
   },
   "dependencies": {
-    "faye": "~1.0.0"
+    "faye": "~1.0.0",
+    "winston": "~0.7.2"
   }
 }
